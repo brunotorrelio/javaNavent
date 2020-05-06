@@ -25,7 +25,7 @@ public class PedidosDAOImpl implements PedidosDAO {
 
 	@Override
 	public Integer getNextId() {
-		// Este método busca de la base de datos el siguiente id de la tabla.
+		// Este metodo busca de la base de datos el siguiente id de la tabla.
 		// Para probar, coloque que devuelva 1 por defecto para que no se dispare un NullPointer
 		return 1;
 	}
