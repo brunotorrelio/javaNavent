@@ -16,6 +16,8 @@ Para ejecutarlo, ubicarse en la raiz del projecto e ingresar el siguiente comand
 
 $ java -jar TestNavent.jar
 
+Por defecto se despliega en localhost:8080
+
 ## Consideraciones sobre la tabla Pedidos
 En el archivo consideracionesTablaPedidos.txt se encuentran las consideraciones que se deberian tener encuanta para el
 caso hipotético en el que la tabla Pedidos contenga muchas filas y columnas nullables y 
