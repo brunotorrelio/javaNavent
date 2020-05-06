@@ -1,0 +1,22 @@
+Ante el hipotético caso de que la tabla Pedidos tenga muchos registros y columnas (algunas nullable y algunas BLOB) 
+tomaria en cuanta la siguientes consideraciones:
+
+- Primero y fundamental indexar la tabla en base a las consultas que se realicen, de tal manera de recorrer solo 
+los indices y no todas las filas.
+
+- Ser lo más específicos en los filtros de las queries que se realicen, es decir, colocar todos los "where" que 
+sean necesarios para acortar el rango de consulta.
+
+- De ser posible, separar las columnas BLOB en otra tabla y agregar una clave foranea que haga referencia a la 
+nueva tabla en la tabla Pedidos. De esta forma, si hay consultas donde no se necesitan las columnas BLOB, el motor 
+no tendrá que recorrer esas columnas.
+
+- Realizar consultas paginadas mediante query string. De esta manera, el motor de la base solo recorrerá el rango 
+especificado. También va a permitir acortar el tamaño de datos que se almacenan en memoria, que se transmiten por 
+la red y que se cargan en el navegador. 
+
+- Se puede crear una tabla auxiliar que almacene los datos "cocinados" para las consultas. Obviamente habría que 
+tener un proceso que vaya completando esta tabla en un rango de tiempo
+o se puede ir completando en una misma transacción con la operación de guardado de un pedido. Evidentemente se estan 
+repitiendo los datos y se debe realizar un doble trabajo para modificar o eliminar un pedido. No es conveniente este 
+enfoque salvo que sea debidamente justificado por la necesidad de aumentar la performance de ciertas consultas específicas.
